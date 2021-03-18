@@ -17,9 +17,7 @@ aliases:
     name: Run envinfo
     command: |
       yarn build
-      yarn link
-      envinfo
-
+      node dist/cli.js
 jobs:
   node10-test:
     working_directory: ~/repo
@@ -27,7 +25,6 @@ jobs:
       - image: node:10
     steps:
       - checkout
-      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -37,7 +34,6 @@ jobs:
       - image: node:alpine
     steps:
       - checkout
-      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -47,9 +43,9 @@ jobs:
       - image: ubuntu
     steps:
       - checkout
-      - run: *install-yarn
       - run: *install-essential
       - run: *setup-nodejs
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -59,7 +55,6 @@ jobs:
       - image: node:lts
     steps:
       - checkout
-      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -80,7 +75,6 @@ jobs:
       - image: reactnativecommunity/react-native-android
     steps:
       - checkout
-      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
