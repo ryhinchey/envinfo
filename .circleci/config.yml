@@ -9,6 +9,10 @@ aliases:
     command: |
       curl -sL https://deb.nodesource.com/setup_12.x | bash -
       apt-get install -y nodejs
+  - &install-yarn
+    name: install yarn
+    command: |
+      curl -o- -L https://yarnpkg.com/install.sh | bash
   - &link-and-execute
     name: Run envinfo
     command: |
@@ -23,6 +27,7 @@ jobs:
       - image: node:10
     steps:
       - checkout
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -32,6 +37,7 @@ jobs:
       - image: node:alpine
     steps:
       - checkout
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -41,6 +47,7 @@ jobs:
       - image: ubuntu
     steps:
       - checkout
+      - run: *install-yarn
       - run: *install-essential
       - run: *setup-nodejs
       - run: yarn install
@@ -52,6 +59,7 @@ jobs:
       - image: node:lts
     steps:
       - checkout
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -62,6 +70,7 @@ jobs:
     steps:
       - checkout
       - run: yum install curl -y && curl -sL https://rpm.nodesource.com/setup_12.x | bash - && yum install nodejs -y
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -71,6 +80,7 @@ jobs:
       - image: reactnativecommunity/react-native-android
     steps:
       - checkout
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -80,6 +90,7 @@ jobs:
       - image: gengjiawen/node-build
     steps:
       - checkout
+      - run: *install-yarn
       - run: yarn install
       - run: yarn test
       - run: *link-and-execute
@@ -96,3 +107,4 @@ workflows:
       - react-native-test
       # Workaround for https://github.com/tabrindle/envinfo/issues/104
       - general-test
+
