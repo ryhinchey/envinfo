@@ -12,7 +12,7 @@ aliases:
   - &install-yarn
     name: install yarn
     command: |
-      curl -o- -L https://yarnpkg.com/install.sh | bash
+        npm i yarn --global
   - &link-and-execute
     name: Run envinfo
     command: |
@@ -107,4 +107,3 @@ workflows:
       - react-native-test
       # Workaround for https://github.com/tabrindle/envinfo/issues/104
       - general-test
-
