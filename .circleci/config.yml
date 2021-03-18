@@ -12,8 +12,8 @@ aliases:
   - &link-and-execute
     name: Run envinfo
     command: |
-      npm run build
-      npm link
+      yarn build
+      yarn link
       envinfo
 
 jobs:
@@ -23,8 +23,8 @@ jobs:
       - image: node:10
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   alpine-test:
     working_directory: ~/repo
@@ -32,8 +32,8 @@ jobs:
       - image: node:alpine
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   ubuntu-test:
     working_directory: ~/repo
@@ -43,8 +43,8 @@ jobs:
       - checkout
       - run: *install-essential
       - run: *setup-nodejs
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   debian-test:
     working_directory: ~/repo
@@ -52,8 +52,8 @@ jobs:
       - image: node:lts
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   centos-test:
     working_directory: ~/repo
@@ -62,8 +62,8 @@ jobs:
     steps:
       - checkout
       - run: yum install curl -y && curl -sL https://rpm.nodesource.com/setup_12.x | bash - && yum install nodejs -y
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   react-native-test:
     working_directory: ~/repo
@@ -71,8 +71,8 @@ jobs:
       - image: reactnativecommunity/react-native-android
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
   general-test:
     working_directory: ~/repo
@@ -80,8 +80,8 @@ jobs:
       - image: gengjiawen/node-build
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test
+      - run: yarn install
+      - run: yarn test
       - run: *link-and-execute
 
 workflows:
